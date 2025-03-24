@@ -11,8 +11,8 @@ public class Sprite {
     public int getX(){return 1;}
     public int getY(){return 1;}
 
-    public void setX(){}
-    public void setY(){}
+    public void setX(int x){this.x = x;}
+    public void setY(int y){this.y = y;}
 
     public String getCoords(){ //returns the coordinates of the sprite ->"(x,y)"
         return "";

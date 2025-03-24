@@ -16,5 +16,6 @@ public class Enemy  { //child  of Sprite
 
 
     public String getRowCol(int size){ //return "Enemy:"+row col
+        return "";
     }
 }
