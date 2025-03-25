@@ -23,16 +23,16 @@ public class Player extends Sprite {
     public void move(String direction) { //move the (x,y) coordinates of the player
         switch (direction) {//check if the input is a directional key (WASD)
             case "w"://up
-                setY(getY() + 1);
+                super.setY(getY() + 1);
                 break;
             case "s"://down
-                setY(getY() - 1);
+                super.setY(getY() - 1);
                 break;
             case "a"://left
-                setX(getX() - 1);
+                super.setX(getX() - 1);
                 break;
             case "d"://right
-                setX(getX() + 1);
+                super.setX(getX() + 1);
                 break;
         }
     }
@@ -61,22 +61,22 @@ public class Player extends Sprite {
     public boolean isValid(int size, String direction){ //check grid boundaries
         switch (direction) {//check if the input is wasd
             case "w":
-                if (getY() < size - 1) {//check if Y is on the edge
+                if (super.getY() < size - 1) {//check if Y is on the edge
                     return true;
                 }
                 return false;
             case "s":
-                if (getY() > 0) {//check if X is on the edge
+                if (super.getY() > 0) {//check if X is on the edge
                     return true;
                 }
                 return false;
             case "d":
-                if (getX() < size - 1) {//check if Y is on the edge
+                if (super.getX() < size - 1) {//check if Y is on the edge
                     return true;
                 }
                 return false;
             case "a":
-                if (getX() > 0) {//check if X is on the edge
+                if (super.getX() > 0) {//check if X is on the edge
                     return true;
                 }
                 return false;

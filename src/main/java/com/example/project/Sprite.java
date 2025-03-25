@@ -25,7 +25,6 @@ public class Sprite {
         } //converts row to 2D plane
         return "[" + row + "][" + x + "]";
     }
-    
 
     public void move(String direction) { //you can leave this empty
         // Default behavior (can be overridden by subclasses)
