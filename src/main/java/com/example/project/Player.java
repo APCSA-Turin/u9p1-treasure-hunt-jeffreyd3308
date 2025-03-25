@@ -21,29 +21,78 @@ public class Player extends Sprite {
   
     //move method should override parent class, sprite
     public void move(String direction) { //move the (x,y) coordinates of the player
-        switch (direction) {
-            case "w":
+        switch (direction) {//check if the input is a directional key (WASD)
+            case "w"://up
                 setY(getY() + 1);
-            case "s":
+                break;
+            case "s"://down
                 setY(getY() - 1);
-            case "a":
+                break;
+            case "a"://left
                 setX(getX() - 1);
-            case "d":
+                break;
+            case "d"://right
                 setX(getX() + 1);
+                break;
         }
     }
 
 
     public void interact(int size, String direction, int numTreasures, Object obj) { // interact with an object in the position you are moving to 
     //numTreasures is the total treasures at the beginning of the game
+        if (isValid(size, direction)) {
+            move(direction);
+            if (obj instanceof Treasure && ((Treasure)obj).getCoords().equals(super.getCoords()) && !(obj instanceof Trophy)) {//interact with treasure but not trophy
+                treasureCount++;
+            } else if (obj instanceof Enemy && ((Enemy)obj).getCoords().equals("Enemy:" + super.getCoords())) {//interact with enemy
+                numLives--;
+                if (numLives == 0) {
+                    //death gameover
+                }
+            } else if (obj instanceof Trophy && ((Trophy)obj).getCoords().equals(super.getCoords())) {//interact with trophy
+                if (treasureCount >= numTreasures) {//check if surpassed treasure threshold
+                    win = true;
+                }
+            }
+        }
     }
 
 
     public boolean isValid(int size, String direction){ //check grid boundaries
+        switch (direction) {//check if the input is wasd
+            case "w":
+                if (getY() < size - 1) {//check if Y is on the edge
+                    return true;
+                }
+                return false;
+            case "s":
+                if (getY() > 0) {//check if X is on the edge
+                    return true;
+                }
+                return false;
+            case "d":
+                if (getX() < size - 1) {//check if Y is on the edge
+                    return true;
+                }
+                return false;
+            case "a":
+                if (getX() > 0) {//check if X is on the edge
+                    return true;
+                }
+                return false;
+        }
         return false;
     }
 
+    @Override
+    public String getCoords(){ //returns "Enemy:"+coordinates
+        return "Player:" + super.getCoords();
+    }
 
+    @Override
+    public String getRowCol(int size){ //return "Enemy:"+row col
+        return "Player:" + super.getRowCol(size);
+    }
    
 }
 
