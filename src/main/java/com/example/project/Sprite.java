@@ -19,11 +19,7 @@ public class Sprite {
     }
 
     public String getRowCol(int size){ //returns the row and column of the sprite -> "[row][col]"
-        int row = size;
-        for (int i = y; i >= 0; i--) {
-            row--;
-        } //converts row to 2D plane
-        return "[" + row + "][" + x + "]";
+        return "[" + (size - 1 - y) + "][" + x + "]";
     }
 
     public void move(String direction) { //you can leave this empty
