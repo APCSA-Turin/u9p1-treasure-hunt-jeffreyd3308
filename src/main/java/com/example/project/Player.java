@@ -18,7 +18,7 @@ public class Player extends Sprite {
     public int getLives(){return numLives;}
     public boolean getWin(){return win;}
 
-  
+    @Override
     //move method should override parent class, sprite
     public void move(String direction) { //move the (x,y) coordinates of the player
         switch (direction) {//check if the input is a directional key (WASD)
