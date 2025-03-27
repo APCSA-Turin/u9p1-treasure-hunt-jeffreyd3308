@@ -27,30 +27,38 @@ public class Grid{
 
     public void placeSprite(Sprite s, String direction) { //place sprite in a new spot based on direction
         if (s instanceof Player) {
-            if (((Player)s).isValid(size, direction)) {
+            int x = 0;
+            int y = 0;
+            switch (direction) {//find the previous position
+                case "w":
+                    x = s.getX();
+                    y = s.getY() - 1;
+                    break;
+                case "s":
+                    x = s.getX();
+                    y = s.getY() + 1;
+                    break;
+                case "a":
+                    x = s.getX() + 1;
+                    y = s.getY();
+                    break;
+                case "d":
+                    x = s.getX() - 1;
+                    y = s.getY();
+                    break;
+            }
+            Player previousPos = new Player(x, y);
+            if (previousPos.isValid(size, direction)) {
                 for (int i = 0; i < grid.length; i++) {//remove player from spot
                     for (int j = 0; j < grid[i].length; j++) {
                         if (grid[i][j] instanceof Player) {
-                            placeSprite(new Dot(grid[i][j].getX(), grid[i][j].getY()));
+                            placeSprite(new Dot(j, size-1-i));
                             break;
                         }
                     }
                 }
                 placeSprite(s);//update move position
-                switch (direction) {//make the previous position a Dot
-                    case "w":
-                        placeSprite(new Dot(s.getX(), s.getY() - 1));
-                        break;
-                    case "s":
-                        placeSprite(new Dot(s.getX(), s.getY() + 1));
-                        break;
-                    case "a":
-                        placeSprite(new Dot(s.getX() + 1, s.getY()));
-                        break;
-                    case "d":
-                        placeSprite(new Dot(s.getX() - 1, s.getY()));
-                        break;
-                }
+                placeSprite(new Dot(x, y));//prev position becomes dot
             }
         }
     }
