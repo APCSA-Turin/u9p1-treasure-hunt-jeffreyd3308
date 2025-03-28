@@ -49,7 +49,7 @@ public class Game{
     public void initialize(){
 
         //to test, create a player, trophy, grid, treasure, and enemies. Then call placeSprite() to put them on the grid
-   
+        
     }
 
     public static void main(String[] args) {

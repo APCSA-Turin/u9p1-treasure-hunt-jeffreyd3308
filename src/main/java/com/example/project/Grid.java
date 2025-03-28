@@ -79,9 +79,11 @@ public class Grid{
     }
     
     public void gameover(){ //use this method to display a loss
+        System.out.println("gameover :(");
     }
 
     public void win(){ //use this method to display a win 
+        System.out.println("winwinwinwinwinwinwinwinwinwinwinwinwinwinwinwin");
     }
 
 
