@@ -29,26 +29,21 @@ public class Grid{
         if (s instanceof Player) {
             int x = 0;
             int y = 0;
-            switch (direction) {//find the previous position
-                case "w":
-                    x = s.getX();
-                    y = s.getY() - 1;
-                    break;
-                case "s":
-                    x = s.getX();
-                    y = s.getY() + 1;
-                    break;
-                case "a":
-                    x = s.getX() + 1;
-                    y = s.getY();
-                    break;
-                case "d":
-                    x = s.getX() - 1;
-                    y = s.getY();
-                    break;
+            if (direction.equals("w")) {//check if the input is a directional key (WASD)
+                x = s.getX();
+                y = s.getY() - 1;
+            } else if (direction.equals("s")) {
+                x = s.getX();
+                y = s.getY() + 1;
+            } else if (direction.equals("a")) {
+                x = s.getX() + 1;
+                y = s.getY();
+            } else if (direction.equals("d")) {
+                x = s.getX() - 1;
+                y = s.getY();
             }
             Player previousPos = new Player(x, y);
-            if (previousPos.isValid(size, direction)) {
+            if (previousPos.isValid(size, direction)) {//check from previous position whether it is valid to move somewhere
                 for (int i = 0; i < grid.length; i++) {//remove player from spot
                     for (int j = 0; j < grid[i].length; j++) {
                         if (grid[i][j] instanceof Player) {

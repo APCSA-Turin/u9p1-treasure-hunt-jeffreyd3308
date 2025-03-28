@@ -18,29 +18,31 @@ public class Test {
         grid.placeSprite(trophy);
         grid.display();
         System.out.println();
-        player.move("w");//[8][0]
-        player.move("w");//[7][0]
-        player.move("d");//[7][1]   
-
-        player.interact(10, "d", 2, treasure);
-        player.move("d");//[7][2] // treasure 
-        grid.placeSprite(player, "d");
-
-        player.move("w"); //[6][2]
-        grid.placeSprite(player,"w");
-        grid.display();
-        System.out.println();
-        for(int i=0;i<4;i++){
-            player.move("w");//[2][2]
+        // Move the player to the enemy's position [4][5]
+        for(int i=0;i<5;i++){
+            player.move("w"); //[9-5][0]
+            grid.placeSprite(player, "w");
         }
 
-        player.interact(10,"a",2,treasure2);
-        player.move("a");//[2][1] treasure collected 
-        grid.placeSprite(player,"a");
+        for(int i=0;i<4;i++){
+            player.move("d");//[5][4]
+            grid.placeSprite(player, "d");
+        }
 
-        player.move("a");
-        grid.placeSprite(player,"a");//[2][0]
+         // Interact with the enemy
+        player.interact(10, "d", 1, enemy);
+        player.move("d");//[4][5]
+        grid.placeSprite(player, "d");
+        //go to  [2][7] enemy from [4][5]
+        player.move("w");//[3][5]
+        player.move("w");//[2][5]
+        player.move("d");//[2][6]
+
+        player.interact(10,"d",1,enemy2);
+        player.move("d");//[2][7]
+        grid.placeSprite(player,"d");
         grid.display();
-        System.out.println();
+        System.out.println(player.getCoords());
+        System.out.println(player.getRowCol(size));
     }
 }
