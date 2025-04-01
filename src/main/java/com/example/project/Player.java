@@ -13,6 +13,12 @@ public class Player extends Sprite {
         win = false;
     }
 
+    public Player(int x, int y, int numLives) { //custom lives
+        super(x, y);
+        treasureCount = 0;
+        this.numLives = numLives;
+        win = false;
+    }
 
     public int getTreasureCount(){return treasureCount;}
     public int getLives(){return numLives;}
@@ -35,27 +41,13 @@ public class Player extends Sprite {
 
     public void interact(int size, String direction, int numTreasures, Object obj) { // interact with an object in the position you are moving to 
     //numTreasures is the total treasures at the beginning of the game
-        if (isValid(size, direction)) {
-            int x = super.getX();
-            int y = super.getY();
-            if (direction.equals("w")) {//check if the input is a directional key (WASD)
-                y++;
-            } else if (direction.equals("s")) {
-                y--;
-            } else if (direction.equals("a")) {
-                x--;
-            } else if (direction.equals("d")) {
-                x++;
-            }
-            String newCoords = "(" + x + "," + y + ")";//determine where player will be if moved
-            if (obj instanceof Treasure && ((Treasure)obj).getCoords().equals(newCoords) && !(obj instanceof Trophy)) {//interact with treasure but not trophy
-                treasureCount++;
-            } else if (obj instanceof Enemy && ((Enemy)obj).getCoords().equals("Enemy:" + newCoords)) {//interact with enemy
-                numLives--;
-            } else if (obj instanceof Trophy && ((Trophy)obj).getCoords().equals(newCoords)) {//interact with trophy
-                if (treasureCount >= numTreasures) {//check if surpassed treasure threshold
-                    win = true;
-                }
+        if (obj instanceof Treasure && !(obj instanceof Trophy)) {//interact with treasure but not trophy
+            treasureCount++;
+        } else if (obj instanceof Enemy) {//interact with enemy
+            numLives--;
+        } else if (obj instanceof Trophy) {//interact with trophy
+            if (treasureCount == numTreasures) {//check if surpassed treasure threshold
+                win = true;
             }
         }
     }
