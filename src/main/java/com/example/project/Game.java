@@ -10,13 +10,13 @@ public class Game{
     private int size; 
 
     public Game(int difficulty){ //the constructor should call initialize() and play()
-        if (difficulty == 3) {
+        if (difficulty == 3) {//hard
             size = 20;
             initialize(3);
-        } else if (difficulty == 2) {
+        } else if (difficulty == 2) {//med
             size = 15;
             initialize(2);
-        } else if (difficulty == 1) {
+        } else if (difficulty == 1) {//easy
             size = 10;
             initialize(1);
         }
@@ -52,6 +52,7 @@ public class Game{
             }
             clearScreen(); // Clear the screen at the beggining of the while loop
 
+            System.out.println("--------------------------------------------");
             grid.display();
             System.out.println("Input a movement key (WASD)");
             direction = scanner.next();
@@ -101,7 +102,7 @@ public class Game{
     public void initialize(int diff){
 
         //to test, create a player, trophy, grid, treasure, and enemies. Then call placeSprite() to put them on the grid
-        if (diff == 1) {
+        if (diff == 1) {//easy
             grid = new Grid(size);
             player = new Player(0, 0);
             Enemy enemy = new Enemy(5, 5);
@@ -121,7 +122,7 @@ public class Game{
             grid.placeSprite(treasure);
             grid.placeSprite(treasure2);
             grid.placeSprite(trophy);
-        } else if (diff == 2) {
+        } else if (diff == 2) {//med
             grid = new Grid(size);
             player = new Player(0, 0);
             Enemy enemy = new Enemy(5, 5);
@@ -150,7 +151,7 @@ public class Game{
             grid.placeSprite(treasure2);
             grid.placeSprite(treasure3);
             grid.placeSprite(trophy);
-        } else if (diff == 3) {
+        } else if (diff == 3) {//hard
             grid = new Grid(size);
             player = new Player(0, 0, 1);
             Enemy enemy = new Enemy(5, 5);
